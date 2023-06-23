@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center justify-content-center bg-primary-subtle" style="height: 100vh;">
+
+  <div class=" border border-black rounded p-5 w-25 bg-white">
+    <h1 class="mb-5 text-center">Sign Up</h1>
+    <!-- <div *ngIf="isError" class="bg-danger  p-2 m-2">
+        The username or password is wrong
+      </div> -->
+    <div *ngIf="isSuccessAlert" class="bg-warning-subtle p-3 mt-2 ">
+      {{successMessage}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSignUp()">
+      <div class="d-flex flex-column mb-2">
+        <label class="fw-bold">Email</label>
+        <input class="p-1" type="email" formControlName="email" required>
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label class="fw-bold">Password</label>
+        <input class="p-1" type="password" formControlName="password" required>
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label class="fw-bold">Re-enter Password</label>
+        <input class="p-1" type="password" formControlName="rePassword" required>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Sign up</button>
+      <button class="btn btn-info m-2" type="button" (click)="signIn()">Log in</button>
+
+    </form>
+  </div>
+</div>

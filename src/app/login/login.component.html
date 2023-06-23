@@ -1,0 +1,20 @@
+<div class="d-flex align-items-center justify-content-center bg-primary-subtle" style="height: 100vh;">
+  <div class=" border border-black rounded p-5 w-25 bg-white">
+    <h1 class="mb-5 text-center">Log in</h1>
+    <div *ngIf="isError" class="bg-danger text-light sp-2">
+      Check your username and password
+    </div>
+    <form action="" #f="ngForm">
+      <div class="d-flex flex-column mb-2">
+        <label class="fw-bold">Email</label>
+        <input class="p-1" type="email" [(ngModel)]="email" name="email" required (click)="resetErrorStatus()">
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label class="fw-bold">Password</label>
+        <input class="p-1" type="password" name="password" [(ngModel)]="password" required (click)="resetErrorStatus()">
+      </div>
+      <button class="btn btn-primary" (click)="onSubmit(f.value)" [disabled]="f.invalid">Log in</button>
+      <button class="btn btn-info m-2" (click)="onSignUp()">Sign up</button>
+    </form>
+  </div>
+</div>

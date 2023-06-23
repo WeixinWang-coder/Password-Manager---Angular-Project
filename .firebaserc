@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "password-manager-a55c6": {
+      "hosting": {
+        "password": [
+          "password-manager-a55c6"
+        ]
+      }
+    },
+    "passwordmanager-6a3eb": {
+      "hosting": {
+        "password": [
+          "passwordmanager-6a3eb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "passwordmanager-6a3eb"
+  }
+}
