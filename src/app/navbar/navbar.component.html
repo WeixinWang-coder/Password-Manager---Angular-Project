@@ -1,6 +1,10 @@
 <nav class="border p-3">
   <div class="d-flex justify-content-evenly">
     <h2> Password Manager</h2>
-    <button class="btn btn-dark" routerLink="/"> Logout</button>
+    <div>
+      <button class="btn btn-dark " *ngIf="router" routerLink="/site-list">Back</button>
+      <button class="btn btn-dark ms-1" routerLink="/"> Logout</button>
+    </div>
+
   </div>
 </nav>

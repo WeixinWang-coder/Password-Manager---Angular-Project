@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PasswordManagerService } from '../password-manager.service';
-import { Observable } from 'rxjs';
 import { AES, enc } from 'crypto-js';
 
 @Component({
@@ -15,7 +14,6 @@ export class PasswordListComponent {
   siteURL!: string;
   siteImgURL!: string;
   passwordList!: Array<any>;
-
   email!: string;
   username!: string;
   password!: string;
@@ -25,6 +23,7 @@ export class PasswordListComponent {
 
   isSuccess: boolean = false;
   successMessage!: string;
+  cryptStatus = 'Decrypt';
   constructor(
     private route: ActivatedRoute,
     private passwordManager: PasswordManagerService
@@ -60,6 +59,9 @@ export class PasswordListComponent {
         .then(() => {
           this.showAlert('Data Saved Successfully');
           this.resetForm();
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
         })
         .catch((err) => {
           console.log(err);
@@ -116,5 +118,9 @@ export class PasswordListComponent {
   onDecrypt(password: string, index: number) {
     const decPassword = this.decryptPassword(password);
     this.passwordList[index].password = decPassword;
+  }
+  onImgError(event: any) {
+    event.target.src =
+      'https://th.bing.com/th/id/OIP.vDf037OKUo0H03weRxdWuAHaHa?pid=ImgDet&rs=1';
   }
 }

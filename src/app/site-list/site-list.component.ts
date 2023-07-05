@@ -12,10 +12,11 @@ export class SiteListComponent {
   siteImageURL!: string;
   siteURL!: string;
   id!: string;
-  allSites!: Observable<Array<any>>;
+  allSites!: Array<any>;
   formState: string = 'Add New';
   isSuccess: boolean = false;
   successMessage!: string;
+  index = 0;
 
   constructor(private passwordManager: PasswordManagerService) {
     this.loadSites();
@@ -25,11 +26,17 @@ export class SiteListComponent {
     this.successMessage = message;
   }
   onSubmit(value: object) {
+    let newObject = { ...value, index: this.index++ };
+    console.log('new object');
+    console.log(newObject);
     if (this.formState == 'Add New') {
       this.passwordManager
         .addSite(value)
         .then(() => {
           this.showAlert('Data Saved Successfully');
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
         })
         .catch((err) => {
           this.isSuccess = false;
@@ -46,8 +53,12 @@ export class SiteListComponent {
     }
   }
   loadSites() {
-    this.allSites = this.passwordManager.loadSites();
+    this.passwordManager.loadSites().subscribe((val) => {
+      this.allSites = val;
+      console.log(val);
+    });
   }
+  //
   editSite(
     siteName: string,
     siteImageURL: string,
@@ -70,5 +81,9 @@ export class SiteListComponent {
       .catch((err) => {
         this.isSuccess = false;
       });
+  }
+  onImgError(event: any) {
+    event.target.src =
+      'https://th.bing.com/th/id/OIP.vDf037OKUo0H03weRxdWuAHaHa?pid=ImgDet&rs=1';
   }
 }

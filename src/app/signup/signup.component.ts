@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit {
   successMessage!: string;
   isErrorAlert: boolean = false;
   errorMessage!: string;
+  isLoading = false;
+
   constructor(
     private passwordmanagerService: PasswordManagerService,
     private router: Router
@@ -32,9 +34,12 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp() {
+    this.isLoading = true;
     if (this.form.value['password'] != this.form.value['rePassword']) {
       this.showAlert('passwords are not match');
+      this.isLoading = false;
     } else {
+      this.isLoading = false;
       this.passwordmanagerService
         .signUp(this.form.value['email'], this.form.value['password'])
         .then(() => {

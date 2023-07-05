@@ -13,6 +13,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
+import { LoadingSpinnerComponent } from './share/loading-spinner/loading-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { SignupComponent } from './signup/signup.component';
     PasswordListComponent,
     SiteListComponent,
     SignupComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     ReactiveFormsModule,
